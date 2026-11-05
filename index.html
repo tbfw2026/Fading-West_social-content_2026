@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fading West Social Schedule</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@600;800&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#1B2235;--muted:#5E6577;--line:#E3E5EA;--tint:#F4F5F8;--navy:#202A44;--red:#AF272F;--gold:#F1B434;color-scheme:light}
+body{margin:0;background:#fff;color:var(--ink);font:400 15px/1.55 "Montserrat",Arial,sans-serif}
+.wrap{max-width:1160px;margin:0 auto;padding-block:44px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));box-sizing:border-box}
+.logo{height:52px;width:auto;display:block;margin-bottom:32px}
+.eb{font:600 12px/1.2 "Saira",Impact,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+h1{font:800 22px/1.1 "Saira",Impact,sans-serif;text-transform:uppercase;color:var(--navy);margin:6px 0 10px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;font-size:14px;line-height:1.6;text-wrap:pretty}
+h2{font:600 13px/1 "Saira",Impact,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:44px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+h3{font:600 15px/1.3 "Montserrat",Arial,sans-serif;color:var(--navy);margin:28px 0 12px}
+ul.weeks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:16px}
+li.card{display:flex;flex-direction:column;gap:8px;height:100%;box-sizing:border-box;padding:20px;border:1px solid var(--line);border-radius:10px}
+a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+b{font:800 18px/1.1 "Saira",Impact,sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--navy)}
+ol{list-style:none;margin:6px 0 4px;padding:0;display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:10px;row-gap:2px;font-size:14px}
+ol li{display:contents}
+ol a{grid-column:1/-1;display:grid;align-items:baseline;grid-template-columns:subgrid;padding:3px 6px;margin-inline:-6px;border-radius:5px;text-decoration:none;color:var(--ink)}
+ol a:hover{background:var(--tint)}
+ol a:hover em{text-decoration:underline;text-underline-offset:2px}
+ol span{white-space:nowrap;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+ol em{font-style:normal}
+ol li.todo>div{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:baseline;padding:3px 6px;margin-inline:-6px;color:var(--ink)}
+ol li.todo em{color:var(--muted)}
+ol small{display:block;width:fit-content;margin-top:5px;font:600 10.5px/1 "Saira",Impact,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 6px}
+.go.off{color:var(--muted);font-weight:500}
+.foot{margin-top:auto;padding-top:8px;display:flex;flex-direction:column;gap:6px}
+.go{font-weight:600;color:var(--navy);font-size:13.5px;text-decoration:none}
+.go:hover{text-decoration:underline;text-underline-offset:3px}
+details.month:last-of-type{border-bottom:1px solid var(--line)}
+details.month:first-of-type{margin-top:36px}
+summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding-block:18px;border-top:1px solid var(--line);position:relative;padding-right:28px}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+.mname{font:800 clamp(30px,5vw,40px)/1 "Saira",Impact,sans-serif;text-transform:uppercase;color:var(--navy)}
+.mcount{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chev{position:absolute;right:6px;top:50%;align-self:center;width:9px;height:9px;margin-top:-7px;border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);rotate:45deg;transition:rotate .2s,margin .2s}
+details[open] .chev{rotate:225deg;margin-top:-2px}
+details.month>ul.weeks{padding-bottom:28px}
+.totop{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--navy);border:0;border-radius:999px;padding:11px 16px 11px 13px;font:600 12.5px/1 "Saira",Impact,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 18px rgba(32,42,68,.22),0 1px 3px rgba(32,42,68,.18);opacity:0;translate:0 10px;pointer-events:none;transition:opacity .2s,translate .2s,box-shadow .2s}
+.totop.show{opacity:1;translate:0 0;pointer-events:auto}
+.totop:hover{box-shadow:0 10px 26px rgba(32,42,68,.3),0 2px 4px rgba(32,42,68,.2)}
+.totop:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.totop svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){.totop,.chev{transition:none}}
+</style>
+</head>
+<body><div class="wrap">
+<img class="logo" src="logo_fw_navy.png" alt="Fading West">
+<div class="eb">Marketing</div>
+<h1>2026 Social Media Schedule</h1>
+<p class="lede">Our upcoming social posts, organized by week. Open a week to see how each post will look on Instagram, Facebook and LinkedIn, copy its caption and download the final files.</p>
+<details class="month" data-month="2026-11" open><summary><span class="mname">November</span><span class="mcount">4 weeks · 12 posts</span><span class="chev" aria-hidden="true"></span></summary><ul class="weeks"><li class="card"><b>Week 1</b><ol><li><a href="2026-11_week-1_11-04-to-11-06/2026-11_week-1_11-04-to-11-06.html#post-1"><span>Wed., Nov. 4</span><em>A Promise Kept</em></a></li><li><a href="2026-11_week-1_11-04-to-11-06/2026-11_week-1_11-04-to-11-06.html#post-2"><span>Thu., Nov. 5</span><em>Meet the Pōhinahina</em></a></li><li><a href="2026-11_week-1_11-04-to-11-06/2026-11_week-1_11-04-to-11-06.html#post-3"><span>Fri., Nov. 6</span><em>Meet the ʻAʻaliʻi</em></a></li></ol><div class="foot"><a class="go" href="2026-11_week-1_11-04-to-11-06/2026-11_week-1_11-04-to-11-06.html">View posts →</a></div></li><li class="card"><b>Week 2</b><ol><li><a href="2026-11_week-2_11-10-to-11-13/2026-11_week-2_11-10-to-11-13.html#post-1"><span>Tue., Nov. 10</span><em>Introducing Our 5-Year Mark</em></a></li><li><a href="2026-11_week-2_11-10-to-11-13/2026-11_week-2_11-10-to-11-13.html#post-2"><span>Wed., Nov. 11</span><em>Veterans Day</em></a></li><li><a href="2026-11_week-2_11-10-to-11-13/2026-11_week-2_11-10-to-11-13.html#post-3"><span>Fri., Nov. 13</span><em>Five Years on the Line</em></a></li></ol><div class="foot"><a class="go" href="2026-11_week-2_11-10-to-11-13/2026-11_week-2_11-10-to-11-13.html">View posts →</a></div></li><li class="card"><b>Week 3</b><ol><li><a href="2026-11_week-3_11-16-to-11-20/2026-11_week-3_11-16-to-11-20.html#post-1"><span>Mon., Nov. 16</span><em>Inside Our Factory</em></a></li><li><a href="2026-11_week-3_11-16-to-11-20/2026-11_week-3_11-16-to-11-20.html#post-2"><span>Wed., Nov. 18</span><em>No Town Solves Housing Alone</em></a></li><li><a href="2026-11_week-3_11-16-to-11-20/2026-11_week-3_11-16-to-11-20.html#post-3"><span>Fri., Nov. 20</span><em>Where It Started: The Farm</em></a></li></ol><div class="foot"><a class="go" href="2026-11_week-3_11-16-to-11-20/2026-11_week-3_11-16-to-11-20.html">View posts →</a></div></li><li class="card"><b>Week 4</b><ol><li class="todo"><div><span>Mon., Nov. 23</span><em>In Their Words: Life at The Farm</em></div></li><li class="todo"><div><span>Thu., Nov. 26</span><em>Do What Libby Does</em></div></li><li><a href="2026-11_week-4_11-27/2026-11_week-4_11-27.html#post-1"><span>Fri., Nov. 27</span><em>Keep Locals Local</em></a></li></ol><div class="foot"><a class="go" href="2026-11_week-4_11-27/2026-11_week-4_11-27.html">View posts →</a></div></li></ul></details><details class="month" data-month="2026-12" open><summary><span class="mname">December</span><span class="mcount">1 week · 2 posts</span><span class="chev" aria-hidden="true"></span></summary><ul class="weeks"><li class="card"><b>Week 1</b><ol><li class="todo"><div><span>Mon., Nov. 30</span><em>Here's to the Next Five</em></div></li><li><a href="2026-12_week-1_12-02/2026-12_week-1_12-02.html#post-1"><span>Wed., Dec. 2</span><em>The Lowest Upfront Price</em></a></li></ol><div class="foot"><a class="go" href="2026-12_week-1_12-02/2026-12_week-1_12-02.html">View posts →</a></div></li></ul></details>
+<button type="button" class="totop" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>Back to top</button>
+<script>
+(function(){
+const ms=[...document.querySelectorAll('details.month')];
+const d=new Date(),cur=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+const keep=ms.find(m=>m.dataset.month===cur)||ms.filter(m=>m.dataset.month<=cur).pop()||ms[0];
+if(ms.length>1)ms.forEach(m=>{m.open=m===keep||m.dataset.month>cur});
+const b=document.querySelector('.totop');
+const upd=()=>b.classList.toggle('show',scrollY>Math.max(400,innerHeight*.75));
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+b.addEventListener('click',()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
+})();
+</script>
+</div></body>
+</html>
