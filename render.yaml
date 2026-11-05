@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: fading-west-social-content
+    runtime: static
+    buildCommand: echo "No build step"
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: X-Robots-Tag
+        value: noindex, nofollow
